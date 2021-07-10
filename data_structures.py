@@ -12,8 +12,6 @@ class Node:
         self.data = data
         self.next = None
 
-    def __repr__(self):
-        return f'{self.next}'
 
 class LinkedList:
     def __init__(self):
@@ -69,17 +67,89 @@ class LinkedList:
             curr_index += 1
 
 
-my_list = LinkedList()
+# my_list = LinkedList()
+#
+# my_list.set_node(1)
+# my_list.set_node(2)
+# my_list.set_node(3)
+# my_list.set_node(4)
+#
+# my_list.display()
+#
+# my_list.erase(1)
+#
+# my_list.display()
+# print(f'The length of the list is: {my_list.length()}')
+# print(f"element at the 2nd index {my_list.get_index(1)}")
 
-my_list.set_node(1)
-my_list.set_node(2)
-my_list.set_node(3)
-my_list.set_node(4)
 
-my_list.display()
+# ===================================================================================
+# Doubly Linked List
+# ===================================================================================
+"""
+this tutorial is by LucidProgramming at https://www.youtube.com/watch?v=8kptHdreaTA
+"""
 
-my_list.erase(1)
 
-my_list.display()
-print(f'the length of the list is: {my_list.length()}')
-print(f"element at the 2nd index {my_list.get_index(1)}")
+class DoublyNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.nextNode = None
+        self.prevNode = None
+
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        if self.head is None:
+            newNode = DoublyNode(data)
+            newNode.prevNode = None
+            self.head = newNode
+        else:
+            newNode = DoublyNode(data)
+            currNode = self.head
+            while currNode.nextNode != None:
+                currNode = currNode.nextNode
+            currNode.nextNode = newNode
+            newNode.prevNode = currNode
+            newNode.nextNode = None
+
+    def prepend(self, data):
+        if self.head is None:
+            newNode = DoublyNode(data)
+            newNode.prevNode = None
+            self.head = newNode
+        else:
+            newNode = DoublyNode(data)
+            self.head.prevNode = newNode
+            newNode.nextNode = self.head
+            self.head = newNode
+            newNode.prevNode = None
+
+    def print_list(self):
+        nodesList = []
+        currNode = self.head
+        while currNode:
+            nodesList.append(currNode.data)
+            currNode = currNode.nextNode
+        print(nodesList)
+
+
+dllist = DoublyLinkedList()
+
+dllist.prepend(99)
+dllist.append(1)
+dllist.append(2)
+dllist.append(3)
+dllist.prepend(66)
+dllist.append(4)
+
+dllist.print_list()
+
+
+# ===================================================================================
+# Circular Linked List
+# ===================================================================================
+
