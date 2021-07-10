@@ -12,6 +12,8 @@ class Node:
         self.data = data
         self.next = None
 
+    def __repr__(self):
+        return f'{self.next}'
 
 class LinkedList:
     def __init__(self):
@@ -81,5 +83,3 @@ my_list.erase(1)
 my_list.display()
 print(f'the length of the list is: {my_list.length()}')
 print(f"element at the 2nd index {my_list.get_index(1)}")
-
-
