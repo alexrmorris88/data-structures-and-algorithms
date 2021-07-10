@@ -137,19 +137,79 @@ class DoublyLinkedList:
         print(nodesList)
 
 
-dllist = DoublyLinkedList()
-
-dllist.prepend(99)
-dllist.append(1)
-dllist.append(2)
-dllist.append(3)
-dllist.prepend(66)
-dllist.append(4)
-
-dllist.print_list()
+# dllist = DoublyLinkedList()
+#
+# dllist.prepend(99)
+# dllist.append(1)
+# dllist.append(2)
+# dllist.append(3)
+# dllist.prepend(66)
+# dllist.append(4)
+#
+# dllist.print_list()
 
 
 # ===================================================================================
 # Circular Linked List
 # ===================================================================================
+"""
+this tutorial is by LucidProgramming at https://www.youtube.com/watch?v=5WoNhm7sOnA
+"""
+
+
+class CircularNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.nextNode = None
+
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def prepend(self, data):
+        newNode = CircularNode(data)
+        currNode = self.head
+        newNode.nextNode = self.head
+        if not self.head:
+            newNode.nextNode = newNode
+        else:
+            while currNode.nextNode != self.head:
+                currNode = currNode.nextNode
+            currNode.nextNode = newNode
+        self.head = newNode
+
+    def append(self, data):
+        if not self.head:
+            self.head = CircularNode(data)
+            self.head.nextNode = self.head
+        else:
+            newNode = CircularNode(data)
+            currNode = self.head
+            while currNode.nextNode != self.head:
+                currNode = currNode.nextNode
+            currNode.nextNode = newNode
+            newNode.nextNode = self.head
+
+    def print_list(self):
+        nodesList = []
+        currNode = self.head
+        while currNode:
+            nodesList.append(currNode.data)
+            currNode = currNode.nextNode
+            if currNode == self.head:
+                break
+        print(nodesList)
+
+
+cllist = CircularLinkedList()
+
+cllist.append(1)
+cllist.append(2)
+cllist.prepend(44)
+cllist.append(3)
+cllist.append(4)
+
+cllist.print_list()
+
 
