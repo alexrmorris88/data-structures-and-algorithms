@@ -202,14 +202,105 @@ class CircularLinkedList:
         print(nodesList)
 
 
-cllist = CircularLinkedList()
+# cllist = CircularLinkedList()
+#
+# cllist.append(1)
+# cllist.append(2)
+# cllist.prepend(44)
+# cllist.append(3)
+# cllist.append(4)
+# cllist.prepend(99)
+#
+# cllist.print_list()
 
-cllist.append(1)
-cllist.append(2)
-cllist.prepend(44)
-cllist.append(3)
-cllist.append(4)
 
-cllist.print_list()
 
+
+# ===================================================================================
+# Stacks using the implementation of a linked list
+# ===================================================================================
+"""
+this tutorial is from https://chercher.tech/python-data-structures/stack-python-ds
+"""
+
+class StackNode:
+    def __init__(self, data):
+        self.data = data
+        self.nextNode = None
+
+
+class Stack:
+    def __init__(self):
+        self.head = None
+        self.top = None
+
+    def push(self, data):
+        if self.is_empty() is True:
+            self.head = StackNode(data)
+            self.top = self.head
+        else:
+            self.top.nextNode = StackNode(data)
+            self.top = self.top.nextNode
+
+    def pop(self):
+        if self.is_empty() is True:
+            print("Stack is empty")
+            return None
+        elif self.head.nextNode is None:
+            qtr = self.top
+            self.head = None
+            self.top = None
+            return qtr.data
+        ptr = self.head
+        qtr = self.top
+        while ptr.nextNode != self.top:
+            ptr = ptr.nextNode
+        ptr.nextNode = None
+        return qtr.data
+
+    def peek(self):
+        if self.is_empty() is True:
+            print("Stack is empty")
+            return None
+        return self.top.data
+
+    def size(self):
+        if self.is_empty() is True:
+            print("Stack is empty")
+        else:
+            ptr = self.head
+            while ptr.nextNode is not None:
+                print(len(ptr.nextNode))
+
+    def is_empty(self):
+        if self.head is None:
+            return True
+        else:
+            return False
+
+    def display(self):
+        if self.is_empty() is True:
+            print("Stack is empty")
+            return None
+        ptr = self.head
+        print("The Stack")
+        while ptr.nextNode is not None:
+            print(ptr.nextNode)
+            ptr = ptr.nextNode
+        print(ptr.data, "<-- Top")
+
+
+a = Stack()
+a.push(1)
+a.push(2)
+a.display()
+a.pop()
+a.display()
+a.pop()
+a.pop()
+a.display()
+a.push(5)
+a.push(6)
+a.display()
+print(a.peek())
 
