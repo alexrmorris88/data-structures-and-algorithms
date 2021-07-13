@@ -285,7 +285,7 @@ class Stack:
         ptr = self.head
         print("The Stack")
         while ptr.nextNode is not None:
-            print(ptr.nextNode)
+            print(ptr.nextNode.data)
             ptr = ptr.nextNode
         print(ptr.data, "<-- Top")
 
@@ -296,7 +296,6 @@ a.push(2)
 a.display()
 a.pop()
 a.display()
-a.pop()
 a.pop()
 a.display()
 a.push(5)
