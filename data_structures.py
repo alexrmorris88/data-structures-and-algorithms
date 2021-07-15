@@ -203,21 +203,19 @@ class CircularLinkedList:
 
 
 # cllist = CircularLinkedList()
-#
+
 # cllist.append(1)
 # cllist.append(2)
 # cllist.prepend(44)
 # cllist.append(3)
 # cllist.append(4)
 # cllist.prepend(99)
-#
+
 # cllist.print_list()
 
 
-
-
 # ===================================================================================
-# Stacks using the implementation of a linked list
+# Stack - using the implementation of a linked list
 # ===================================================================================
 """
 this tutorial is from https://chercher.tech/python-data-structures/stack-python-ds
@@ -290,16 +288,82 @@ class Stack:
         print(ptr.data, "<-- Top")
 
 
-a = Stack()
-a.push(1)
-a.push(2)
-a.display()
-a.pop()
-a.display()
-a.pop()
-a.display()
-a.push(5)
-a.push(6)
-a.display()
-print(a.peek())
+# a = Stack()
+# a.push(1)
+# a.push(2)
+# a.display()
+# a.pop()
+# a.display()
+# a.pop()
+# a.display()
+# a.push(5)
+# a.push(6)
+# a.display()
+# print(a.peek())
 
+
+# ===================================================================================
+# Queue - using a linked list to implement the queue
+# ===================================================================================
+"""
+this tutorial is from https://www.geeksforgeeks.org/python-queue-using-doubly-linked-list/
+"""
+
+
+class QueueNode:
+    def __init__(self, data):
+        self.data = data
+        self.nextNode = None
+
+
+class Queue:
+    def __init__(self):
+        self.head = None
+        self.lastNode = None
+
+    def enqueue(self, data):
+        if self.lastNode is None:
+            self.head = QueueNode(data)
+            self.lastNode = self.head
+        else:
+            self.lastNode.nextNode = QueueNode(data)
+            self.lastNode = self.lastNode.nextNode
+
+    def dequeue(self):
+        if self.head is None:
+            print("Node is empty")
+            return None
+        else:
+            to_return = self.head.data
+            self.head = self.head.nextNode
+            return to_return
+
+    def display(self):
+        print("queue elements are:")
+        temp = self.head
+        while temp is not None:
+            print(temp.data, end="->")
+            temp = temp.nextNode
+
+
+q = Queue()
+
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+q.enqueue(4)
+q.enqueue(5)
+
+q.dequeue()
+q.dequeue()
+q.dequeue()
+
+q.display()
+
+
+# ===================================================================================
+# Priority Queue - using a linked list to implement the queue
+# ===================================================================================
+"""
+this tutorial is from https://www.geeksforgeeks.org/python-queue-using-doubly-linked-list/
+"""
