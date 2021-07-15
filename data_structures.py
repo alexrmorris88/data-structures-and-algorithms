@@ -332,7 +332,7 @@ class Queue:
     def dequeue(self):
         if self.head is None:
             print("Node is empty")
-            return None
+            return
         else:
             to_return = self.head.data
             self.head = self.head.nextNode
@@ -346,24 +346,93 @@ class Queue:
             temp = temp.nextNode
 
 
-q = Queue()
-
-q.enqueue(1)
-q.enqueue(2)
-q.enqueue(3)
-q.enqueue(4)
-q.enqueue(5)
-
-q.dequeue()
-q.dequeue()
-q.dequeue()
-
-q.display()
+# q = Queue()
+#
+# q.enqueue(1)
+# q.enqueue(2)
+# q.enqueue(3)
+# q.enqueue(4)
+# q.enqueue(5)
+#
+# q.display()
 
 
 # ===================================================================================
 # Priority Queue - using a linked list to implement the queue
 # ===================================================================================
 """
-this tutorial is from https://www.geeksforgeeks.org/python-queue-using-doubly-linked-list/
+this tutorial is from https://www.geeksforgeeks.org/priority-queue-using-linked-list/
 """
+
+
+class PriorityQueueNode:
+    def __init__(self, data, pr):
+        self.data = data
+        self.priority = pr
+        self.nextNode = None
+
+
+class PriorityQueue:
+    def __init__(self):
+        self.front = None
+
+    def is_empty(self):
+        if self.front is None:
+            return True
+        else:
+            return False
+
+    def push(self, data, pr):
+        if self.is_empty() == True:
+            self.front = PriorityQueueNode(data, pr)
+            return 1
+        elif self.front.priority > pr:
+            newNode = PriorityQueueNode(data, pr)
+            newNode.nextNode = self.front
+            self.front = newNode
+            return 1
+        else:
+            temp = self.front
+            while temp.nextNode:
+                if pr <= temp.nextNode.priority:
+                    break
+                temp = temp.nextNode
+            newNode = PriorityQueueNode(data, pr)
+            newNode.nextNode = temp.nextNode
+            temp.nextNode = newNode
+            return 1
+
+    def pop(self):
+        if self.is_empty() == True:
+            return
+        else:
+            self.front = self.front.nextNode
+            return 1
+
+    def peek(self):
+        if self.is_empty() == True:
+            return
+        else:
+            return self.front.data
+
+    def traverse(self):
+        if self.is_empty() == True:
+            return "Queue is empty"
+        else:
+            temp = self.front
+            while temp:
+                print(temp.data, end=", ")
+                temp = temp.nextNode
+
+
+pq = PriorityQueue()
+pq.push(4, 1)
+pq.push(5, 2)
+pq.push(6, 3)
+pq.push(7, 0)
+
+pq.pop()
+
+pq.traverse()
+
+
