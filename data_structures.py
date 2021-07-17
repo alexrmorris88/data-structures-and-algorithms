@@ -495,12 +495,77 @@ def build_product_tree():
     return root
 
 
-root = build_product_tree()
-root.print_tree()
+# root = build_product_tree()
+# root.print_tree()
 
 
+# ===================================================================================
+# Binary Trees
+# ===================================================================================
+"""
+this tutorial is from https://www.youtube.com/watch?v=lFq5mYUWEBk
+"""
 
 
+class BinarySearchTreeNode:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def add_child(self, data):
+        if data == self.data: # checking to see if the data already exists
+            return
+        if data < self.data: # data is added to the left tree
+            if self.left: # if there is data on the left already
+                self.left.add_child(data)
+            else: # if there is no data on the left already
+                self.left = BinarySearchTreeNode(data)
+        else: # adding data to the right tree
+            if self.right:  # if there is data on the right already
+                self.right.add_child(data)
+            else:  # if there is no data on the right already
+                self.right = BinarySearchTreeNode(data)
+
+    def in_order_traversal(self):
+        elements = []
+
+        if self.left: # visit the left three first
+            elements += self.left.in_order_traversal()
+
+        else:
+            if self.right: # visit the right tree
+                elements += self.right.in_order_traversal()
+
+        elements.append(self.data)  # visit the root node
+
+        return elements
+
+    def search(self, value):
+        if self.data == value:
+            return True
+        if value < self.data: # value might be in the left subtree
+            if self.left:
+                self.left.search(value)
+            else:
+                return False
+        if value > self.data: # value might be in the right subtree
+            if self.right:
+                self.right.search(value)
+            else:
+                return False
 
 
+def build_tree(elements):
+    root = BinarySearchTreeNode(elements[0])
+
+    for i in range(1, len(elements)):
+        root.add_child(elements[i])
+
+        return root
+
+
+# numbers = [100, 20, 3, 4, 40, 50, 20, 77, 82]
+# numbers_tree = build_tree(numbers)
+# print(numbers_tree.in_order_traversal())
 
