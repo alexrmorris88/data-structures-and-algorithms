@@ -623,16 +623,59 @@ class MaxHeap:
         print(self.heap) # Prints the heap
 
 
-h = MaxHeap()
-h.insert(2)
+# h = MaxHeap()
+# h.insert(2)
+# h.insert(100)
+# h.insert(20)
+# h.insert(40)
+# h.insert(5)
+# h.insert(8)
+# h.insert(19)
+#
+# h.printHeap()
+#
+# print(h.getMax())
+
+
+# ===================================================================================
+# Heap - MinHeap using heapq
+# ===================================================================================
+"""
+this tutorial is from https://www.section.io/engineering-education/heap-data-structure-python/
+"""
+import heapq
+
+
+class MinHeap:
+    def __init__(self, minheap): # minheap is the list that we can to convert to a heap
+        heapq.heapify(minheap) # Use the heapify function to convert list to a heap
+        self.minheap = minheap
+
+    def insert(self, key):
+        heapq.heappush(self.minheap, key) # Insert key into the heap (heapq automatically maintains the heap property)
+
+    def getMin(self):
+        return self.minheap[0] # Returns the smallest element of the heap in O(1) time
+
+    def removeMin(self):
+        heapq.heappop(self.minheap) # The heappop function removes the smallest element in the heap
+
+    def printHeap(self):
+        print(self.minheap) # Prints the heap
+
+heap_list = [2,3,4,77,8,44]
+
+h = MinHeap(heap_list)
+h.insert(1)
 h.insert(100)
+h.insert(13)
 h.insert(20)
-h.insert(40)
-h.insert(5)
-h.insert(8)
-h.insert(19)
+h.insert(50)
+h.insert(70)
+h.insert(4)
+h.insert(6)
 
 h.printHeap()
 
-print(h.getMax())
+
 
