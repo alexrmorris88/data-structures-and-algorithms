@@ -569,3 +569,10 @@ def build_tree(elements):
 # numbers_tree = build_tree(numbers)
 # print(numbers_tree.in_order_traversal())
 
+
+# ===================================================================================
+# Binary Trees
+# ===================================================================================
+"""
+this tutorial is from 
+"""
