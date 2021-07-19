@@ -663,19 +663,76 @@ class MinHeap:
     def printHeap(self):
         print(self.minheap) # Prints the heap
 
-heap_list = [2,3,4,77,8,44]
+# heap_list = [2,3,4,77,8,44]
+#
+# h = MinHeap(heap_list)
+# h.insert(1)
+# h.insert(100)
+# h.insert(13)
+# h.insert(20)
+# h.insert(50)
+# h.insert(70)
+# h.insert(4)
+# h.insert(6)
+#
+# h.printHeap()
 
-h = MinHeap(heap_list)
-h.insert(1)
-h.insert(100)
-h.insert(13)
-h.insert(20)
-h.insert(50)
-h.insert(70)
-h.insert(4)
-h.insert(6)
 
-h.printHeap()
+# ===================================================================================
+# Hash Tables - without collisions
+# ===================================================================================
+"""
+this tutorial is from https://www.youtube.com/watch?v=ea8BRGxGmlA
+"""
+
+
+class HashTable:
+    def __init__(self):
+        self.MAX = 20
+        self.array = [None for i in range(self.MAX)]
+
+    def get_hash(self, key):
+        h = 0
+        for char in key:
+            h += ord(char) # using ASCII coding
+        return h % self.MAX
+
+    def __setitem__(self, key, value):
+        h = self.get_hash(key)
+        self.array[h] = value
+
+    def __getitem__(self, key):
+        h = self.get_hash(key)
+        return self.array[h]
+
+    def __delitem__(self, key):
+        h = self.get_hash(key)
+        self.array[h] = None
+
+
+# ht = HashTable()
+# ht['march 6'] = 130
+# ht['march 7'] = 120
+# ht['march 8'] = 150
+# ht['march 9'] = 110
+# ht['march 17'] = 123
+# ht['march 20'] = 100
+#
+# print(ht.array)
+#
+# del ht['march 20']
+#
+# print(ht.array)
+
+
+
+
+
+
+
+
+
+
 
 
 
