@@ -725,7 +725,70 @@ class HashTable:
 # print(ht.array)
 
 
+# ===================================================================================
+# Hash Tables - with collisions
+# ===================================================================================
+"""
+this tutorial is from https://www.youtube.com/watch?v=54iv1si4YCM
+"""
 
+
+class HashTable:
+    def __init__(self):
+        self.MAX = 10
+        self.array = [[] for i in range(self.MAX)] # we change the "None" to a [] for handling collisions
+
+    def get_hash(self, key):
+        h = 0
+        for char in key:
+            h += ord(char) # using ASCII coding
+        return h % self.MAX
+
+    def __setitem__(self, key, value):
+        h = self.get_hash(key)
+        found = False
+
+        # instead of overwriting the value, we have to implement the linked list
+
+        for idx, elem in enumerate(self.array[h]): # if the key exists, handle it
+            if len(elem) == 2 and elem[0] == key:
+                self. array[h][idx] = (key, value)
+                found = True
+                break
+
+        if not found: # if the key does not exist
+            self.array[h].append((key, value))
+
+    def __getitem__(self, key): # we need to update the 'getitem' to include multiple items with the same hash value
+        h = self.get_hash(key)
+        for elem in self.array[h]:
+            if elem[0] == key:
+                return elem[1]
+
+    def __delitem__(self, key):
+        h = self.get_hash(key)
+        for idx, elem in enumerate(self.array[h]):
+            if elem[0] == key:
+                del self.array[h][idx]
+
+
+ht = HashTable()
+ht['march 6'] = 130
+ht['march 6'] = 176
+ht['march 7'] = 120
+ht['march 8'] = 150
+ht['march 9'] = 110
+ht['march 9'] = 155
+ht['march 17'] = 123
+ht['march 20'] = 100
+
+print(ht.array)
+
+print(ht['march 6'])
+
+del ht['march 20']
+
+print(ht.array)
 
 
 
