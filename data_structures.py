@@ -53,18 +53,24 @@ class LinkedList:
             curr_index += 1
 
     def erase(self, index):
-        if index >= self.length():
-            print("ERROR: 'Erase' Index our of range")
-            return
-        curr_index = 0
-        curr_node = self.head
-        while True:
-            last_node = curr_node
-            curr_node = curr_node.next
-            if curr_index == index:
-                last_node.next = curr_node.next # would be erasing current node
+        removeNode = self.head
+
+        if removeNode is not None:
+            if removeNode.data == index:
+                self.head = removeNode.next
                 return
-            curr_index += 1
+
+        while removeNode is not None:
+            if removeNode.data == index:
+                break
+            currNode = removeNode
+            removeNode = removeNode.next
+
+        if removeNode is None:
+            print("ERROR: index is out of range")
+            return
+
+        currNode.next = removeNode.next
 
 
 # my_list = LinkedList()
