@@ -245,13 +245,95 @@ class CircularLinkedList:
                     break
 
 
+# if __name__ == "__main__":
+#     cll = CircularLinkedList()
+#     cll.append(1)
+#     cll.append(3)
+#     cll.append(4)
+#
+#     # cll.remove(2)
+#
+#     cll.printNode()
+
+
+# ===================================================================================
+# Circular Linked List
+# ===================================================================================
+
+class CircularNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        newNode = CircularNode(data)
+        currNode = self.head
+        newNode.next = currNode
+
+        if currNode is None:
+            self.head = newNode
+            return
+        else:
+            while currNode.next is not None:
+                currNode = currNode.next
+                if currNode.next is self.head:
+                    break
+            currNode.next = newNode
+
+    def deleteNode(self, node):
+        currNode = self.head
+
+        if currNode is None:
+            print("List is empty")
+            return
+
+        if currNode.data is node and currNode.next is self.head:
+            self.head = None
+
+        if currNode.data is node:
+            while currNode.next is not self.head:
+                currNode = currNode.next
+            currNode.next = self.head.next
+            self.head = currNode.next
+
+        while currNode.next.data is not node and currNode.next is not self.head:
+            currNode = currNode.next
+
+        if currNode.next.data is node:
+            nextNode = currNode.next
+            currNode.next = nextNode.next
+
+        else:
+            print("Node not found")
+
+        return self.head
+
+    def print_nodes(self):
+        currNode = self.head
+        if currNode is not None:
+            while True:
+                print(currNode.data, end=" ")
+                currNode = currNode.next
+                if currNode is self.head:
+                    break
+
+
 if __name__ == "__main__":
     cll = CircularLinkedList()
+
     cll.append(1)
-    cll.append(3)
-    cll.append(4)
+    cll.append(2)
+    cll.append(44)
 
-    # cll.remove(2)
+    cll.deleteNode(2)
 
-    cll.printNode()
+    cll.print_nodes()
+
+
+
 
