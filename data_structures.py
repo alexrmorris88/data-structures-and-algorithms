@@ -208,16 +208,16 @@ class CircularLinkedList:
         print(nodesList)
 
 
-cllist = CircularLinkedList()
-
-cllist.append(1)
-cllist.append(2)
-cllist.prepend(44)
-cllist.append(3)
-cllist.append(4)
-cllist.prepend(99)
-
-cllist.print_list()
+# cllist = CircularLinkedList()
+#
+# cllist.append(1)
+# cllist.append(2)
+# cllist.prepend(44)
+# cllist.append(3)
+# cllist.append(4)
+# cllist.prepend(99)
+#
+# cllist.print_list()
 
 
 # ===================================================================================
@@ -795,13 +795,5 @@ class HashTable:
 # del ht['march 20']
 #
 # print(ht.array)
-
-
-
-
-
-
-
-
 
 

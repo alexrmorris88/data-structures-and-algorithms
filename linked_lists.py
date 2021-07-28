@@ -61,14 +61,11 @@ class SingleLinkedList:
         currNode.nextNode = removeNode.nextNode
 
     def printNode(self):
-        nodeList = []
         currNode = self.head
 
         while currNode:
-            nodeList.append(currNode.data)
+            print(currNode.data, end=' ')
             currNode = currNode.nextNode
-
-        print(nodeList)
 
 
 # if __name__ == "__main__":
@@ -162,26 +159,99 @@ class DoublyLinkedList:
 
     def printNode(self):
         currNode = self.head
-        nodeList = []
 
         while currNode is not None:
-            nodeList.append(currNode.data)
+            print(currNode.data, end=" ")
             currNode = currNode.nextNode
 
-        print(nodeList)
+
+# if __name__ == "__main__":
+#     dll = DoublyLinkedList()
+#     dll.append("hi")
+#     dll.append(2)
+#     dll.append(3)
+#     dll.append(4)
+#     dll.append(5)
+#     dll.prepend(266)
+#     dll.prepend(288888)
+#     dll.remove(5)
+#
+#     dll.printNode()
+#
+#     print(dll.length())
+
+
+# ===================================================================================
+# Doubly Linked List
+# ===================================================================================
+
+class CircularNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        newNode = CircularNode(data)
+        currNode = self.head
+        newNode.next = currNode
+
+        if currNode is None:
+            self.head = newNode
+            return
+        else:
+            while currNode.next is not None:
+                currNode = currNode.next
+                if currNode.next == self.head:
+                    break
+            currNode.next = newNode
+
+    def remove(self, index):
+        removeNode = self.head
+
+        if removeNode.next is not None:
+            if removeNode.data == index:
+                self.head = removeNode.next
+                return
+
+            # elif removeNode.data != index:
+            #     print("ERROR: value does not exist")
+            #     return
+
+        while removeNode.next is not None:
+            if removeNode.data == index:
+                break
+            currNode = removeNode
+            removeNode = removeNode.next
+
+        if removeNode is None:
+            print("ERROR: list is empty")
+            return
+
+        currNode.next = removeNode.next
+
+    def printNode(self):
+        currNode = self.head
+
+        if currNode is not None:
+            while True:
+                print(currNode.data, end=" ")
+                currNode = currNode.next
+                if currNode == self.head:
+                    break
 
 
 if __name__ == "__main__":
-    dll = DoublyLinkedList()
-    dll.append(1)
-    dll.append(2)
-    dll.append(3)
-    dll.append(4)
-    dll.append(5)
-    dll.prepend(266)
+    cll = CircularLinkedList()
+    cll.append(1)
+    cll.append(3)
+    cll.append(4)
 
-    dll.remove(2)
+    # cll.remove(2)
 
-    dll.printNode()
+    cll.printNode()
 
-    print(dll.length())
