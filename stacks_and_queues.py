@@ -65,23 +65,79 @@ class Stack:
             currNode = currNode.next
 
 
+# if __name__ == "__main__":
+#     stack = Stack()
+#
+#     stack.append(1)
+#     stack.append(2)
+#     stack.append(3)
+#     stack.append(4)
+#
+#     stack.pop()
+#
+#     stack.print_node()
+#     print("\n", stack.peek())
+#     print(stack.empty())
+
+
+# =============================================================================
+# Queues
+# =============================================================================
+
+
+class QueueNode:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+
+class Queue:
+    def __init__(self):
+        self.head = None
+        self.prevNode = None
+
+    def enqueue(self, data):
+        newNode = QueueNode(data)
+        currNode = self.head
+
+        if currNode is None:
+            self.head = newNode
+            self.prevNode = self.head
+        else:
+            while currNode.next is not None:
+                currNode = currNode.next
+            self.prevNode.next = newNode
+            self.prevNode = self.prevNode.next
+
+    def dequeue(self):
+        currNode = self.head
+
+        if currNode is None:
+            print("Queue is empty")
+            return
+        else:
+            self.head = self.head.next
+            return self.head.data
+
+    def print_nodes(self):
+        currNode = self.head
+        while currNode is not None:
+            print(currNode.data, end="->")
+            currNode = currNode.next
+
+
 if __name__ == "__main__":
-    stack = Stack()
+    queue = Queue()
 
-    stack.append(1)
-    stack.append(2)
-    stack.append(3)
-    stack.append(4)
+    queue.enqueue(1)
+    queue.enqueue(2)
+    queue.enqueue(3)
+    queue.enqueue(4)
 
-    stack.pop()
+    queue.dequeue()
+    queue.dequeue()
 
-    stack.print_node()
-    print("\n", stack.peek())
-    print(stack.empty())
-
-
-
-
+    queue.print_nodes()
 
 
 

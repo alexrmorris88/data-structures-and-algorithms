@@ -360,6 +360,9 @@ class Queue:
 # q.enqueue(4)
 # q.enqueue(5)
 #
+# q.dequeue()
+# q.dequeue()
+#
 # q.display()
 
 
