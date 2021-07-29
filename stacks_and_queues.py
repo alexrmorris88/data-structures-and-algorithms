@@ -126,18 +126,90 @@ class Queue:
             currNode = currNode.next
 
 
+# if __name__ == "__main__":
+#     queue = Queue()
+#
+#     queue.enqueue(1)
+#     queue.enqueue(2)
+#     queue.enqueue(3)
+#     queue.enqueue(4)
+#
+#     queue.dequeue()
+#     queue.dequeue()
+#
+#     queue.print_nodes()
+
+
+# =============================================================================
+# Priority Queues
+# =============================================================================
+
+
+class PriorityQueueNode:
+    def __init__(self, data=None, pr=None):
+        self.data = data
+        self.priority = pr
+        self.next = None
+
+
+class PriorityQueue:
+    def __init__(self):
+        self.head = None
+
+    def enqueue(self, data, pr):
+        newNode = PriorityQueueNode(data, pr)
+        currNode = self.head
+
+        if currNode is None:
+            self.head = newNode
+
+        elif currNode.priority > pr:
+            newNode.next = self.head
+            self.head = newNode
+
+        else:
+            while currNode.next is not None:
+                if currNode.next.priority >= pr:
+                    break
+                currNode = currNode.next
+            newNode.next = currNode.next
+            currNode.next = newNode
+
+    def dequeue(self):
+        currNode = self.head
+
+        if currNode is None:
+            print("List is empty")
+            return
+        else:
+            self.head = self.head.next
+            return
+
+    def print_node(self):
+        currNode = self.head
+        while currNode is not None:
+            print(currNode.data, end=" ")
+            currNode = currNode.next
+
+
 if __name__ == "__main__":
-    queue = Queue()
+    pq = PriorityQueue()
 
-    queue.enqueue(1)
-    queue.enqueue(2)
-    queue.enqueue(3)
-    queue.enqueue(4)
+    pq.enqueue(333, 1)
+    pq.enqueue(444, 10)
+    pq.enqueue(6, 12)
+    pq.enqueue(777, 3)
+    pq.enqueue(888, 7)
 
-    queue.dequeue()
-    queue.dequeue()
+    pq.dequeue()
+    pq.dequeue()
 
-    queue.print_nodes()
+    pq.print_node()
+
+
+
+
+
 
 
 
