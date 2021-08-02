@@ -480,6 +480,7 @@ class TreeNode:
             for c in self.child:
                 c.print_tree()
 
+
 def build_product_tree():
     root = TreeNode("Electronics")
 

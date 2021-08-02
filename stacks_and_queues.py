@@ -41,6 +41,7 @@ class Stack:
         while currNode.next is not topNode:
             currNode = currNode.next
         currNode.next = None
+        self.top = currNode
         return topNode.data
 
     def peek(self):
