@@ -55,6 +55,58 @@ def build_tree():
     return root
 
 
-root = build_tree()
-root.print_tree()
+# root = build_tree()
+# root.print_tree()
 
+
+# ===================================================================================
+# Binary Trees
+# ===================================================================================
+
+
+class BinaryTrees:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+    def add_child(self, data):
+        if data is self.data:
+            return
+        if data < self.data:
+            if self.left:
+                self.left.add_child(data)
+            else:
+                self.left = BinaryTrees(data)
+        else:
+            if self.right:
+                self.right.add_child(data)
+            else:
+                self.right = BinaryTrees(data)
+
+    def print_tree(self):
+        elements = []
+
+        if self.left:
+            elements += self.left.print_tree()
+
+        else:
+            if self.right:
+                elements += self.right.print_tree()
+
+        elements.append(self.data)
+
+        return elements
+
+def build_tree(elements):
+    root = BinaryTrees(elements[0])
+
+    for i in range(1, len(elements)):
+        root.add_child(elements[i])
+
+        return root
+
+
+numbers = [100, 20, 3, 4, 40, 50, 20, 77, 82]
+numbers_tree = build_tree(numbers)
+print(numbers_tree.print_tree())
