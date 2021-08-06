@@ -157,3 +157,42 @@ if __name__ == "__main__":
     array = [ 1000, 10, 7, 8, 9, 1, 5, 100, 88, 33, 6, 11, 20, 30, 40 ]
     quick_sort(0, len(array) - 1, array)
     print(f'Sorted array: {array}')
+
+
+# =============================================================================
+# Heap Sort Algorithm
+# =============================================================================
+
+
+def heapify(arr, n, i):
+    largest = i
+    L = 2 * i + 1
+    R = 2 * i + 2
+
+    if L < n and arr[largest] < arr[L]:
+        largest = L
+
+    if R < n and arr[largest] < arr[R]:
+        largest = R
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+
+def heapSort(arr):
+    n = len(arr)
+
+    for i in range(n // 2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    for i in range(n - 1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]  # swap
+        heapify(arr, i, 0)
+
+
+if __name__ == "__main__":
+    arr = [12, 11, 13, 5, 6, 7]
+    heapSort(arr)
+    for i in range(len(arr)):
+        print(arr[i], end=" ")
