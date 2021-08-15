@@ -201,7 +201,10 @@ def heapSort(arr):
 # =============================================================================
 # Finding a Peak - Stright Forward Approach
 # =============================================================================
-
+"""
+Practice based on MIT 6.006 Course
+Example taken from: https://www.geeksforgeeks.org/find-peak-element-2d-array/
+"""
 
 def findPeak(array, n):
     if(n == 1):
