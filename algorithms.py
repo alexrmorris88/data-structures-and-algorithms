@@ -219,10 +219,72 @@ def findPeak(array, n):
             return i
 
 
-if __name__ == "__main__":
-    array = [ 1, 3, 5, 66, 9, 5, 77, 2, 10, 100, 90]
-    n = len(array)
-    print(f"The peak is {findPeak(array, n)}")
+# if __name__ == "__main__":
+#     array = [ 1, 3, 5, 66, 9, 5, 77, 2, 10, 100, 90]
+#     n = len(array)
+#     print(f"The peak is {findPeak(array, n)}")
+
+
+
+# =============================================================================
+# Divide and Conquer Algorithm
+# =============================================================================
+"""
+Practice based on MIT 6.006 Course
+Example taken from: https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/
+"""
+
+
+def DaC_max(a, index, l):
+    max = -1
+
+    if (index >= l - 2):
+        if (a[index] > a[index + 1]):
+            return a[index]
+        else:
+            return a[index + 1]
+
+    max = DaC_max(a, index + 1, l)
+
+    if (a[index] > max):
+        return a[index]
+    else:
+        return max
+
+
+def DaC_min(a, index, l):
+    min = 0
+    if (index >= l - 2):
+        if (a[index] < a[index + 1]):
+            return a[index]
+        else:
+            return a[index + 1]
+
+    min = DaC_min(a, index + 1, l)
+
+    if (a[index] < min):
+        return a[index]
+    else:
+        return min
+
+
+if __name__ == '__main__':
+    min, max = 0, -1
+    a = [70, 250, 50, 80, 140, 12, 14]
+
+    # Recursion - DAC_Max function called
+    max = DaC_max(a, 0, len(a))
+
+    # Recursion - DAC_Max function called
+    min = DaC_min(a, 0, len(a))
+    print("The minimum number in a given array is : ", min)
+    print("The maximum number in a given array is : ", max)
+
+
+
+
+
+
 
 
 
